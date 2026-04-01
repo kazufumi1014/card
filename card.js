@@ -42,11 +42,12 @@ function renderMenu() {
   }
   console.log(chalk.bold.white("Open a link:"));
   menuItems.forEach((item, i) => {
-    const cursor = i === selectedIndex ? chalk.cyan("▶") : " ";
-    const label  = i === selectedIndex
-      ? chalk.cyan.bold(item.label)
-      : chalk.white(item.label);
-    console.log(` ${cursor} ${label}`);
+    if (i === selectedIndex) {
+      const line = ` ▶ ${item.label} `;
+      console.log(chalk.bgCyan.black.bold(line));
+    } else {
+      console.log(chalk.white(`   ${item.label}`));
+    }
   });
   console.log(chalk.gray("  ↑↓ navigate   Enter open   q quit"));
   menuRendered = true;
